@@ -32,25 +32,39 @@ def get_quote():
         return f"Quote unavailable ({e})"
   
 def build_summary():
+    today = date.today().strftime("%A, %d %B %Y")
+
     weather = get_weather()
     quote = get_quote()
 
     summary = f"""
-Pulse Daily Summary
-Weather:
+==============================
+PULSE DAILY SUMMARY
+{today}
+==============================
+
+WEATHER
+
 {weather}
-Today's Quote:
+
+TODAY'S QUOTE
+
 {quote}
+
+==============================
 """
+
     return summary
+
 
 def run():
     summary = build_summary()
 
     print(summary)
 
-    with open("daily_summary.txt", "w") as f:
+    with open("daily_summary.txt", "w",encoding="utf-8") as f:
         f.write(summary)
+    print("PULSE ran Successfully!")
 
 
 if __name__ == "__main__":
